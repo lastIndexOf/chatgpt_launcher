@@ -5,6 +5,10 @@
 - 安装后，使用快捷键 `command+shift+space` 打开客户端
 - 由于 openai 的 api 上下文有最大 tokens 限制，超过限制后会直接报400，所以提供了命令清除 context，直接在输入框输入`:clear`（英文），敲回车即可
 
+## 下载
+
+![下载地址](https://github.com/lastIndexOf/ChatGPT-Client/releases/)
+
 ## 基础能力
 
 在 `~/.chatrc` 下声明自己的 openai api key
