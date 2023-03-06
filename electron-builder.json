@@ -1,0 +1,35 @@
+{
+  "productName": "chatgpt-client",
+  "appId": "com.zhengfankai.chatgpt_client",
+  "directories": {
+    "output": "build"
+  },
+  "files": ["lib/**/*", "node_modules/**/*", "package.json"],
+  "publish": [
+    {
+      "provider": "generic",
+      "url": "http://your.server.com/path/to/upload"
+    }
+  ],
+  "win": {
+    "target": ["nsis"]
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": true
+  },
+  "mac": {
+    "target": ["dmg"],
+    "extendInfo": {
+      "LSUIElement": 1,
+      "LSBackgroundOnly": true
+    }
+  },
+  "dmg": {
+    "title": "ChatGPT_Client"
+  },
+  "linux": {
+    "target": ["deb"]
+  }
+}

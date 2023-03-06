@@ -1,0 +1,29 @@
+{
+  "name": "@zhengfankai/chatgpt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/electron/main",
+  "bin": {
+    "ct": "./lib/bin/index.js"
+  },
+  "scripts": {
+    "dev:electron": "npm run copy:asset && NODE_ENV=development concurrently \"tsc --watch\" \"electron ./lib/electron/main\"",
+    "copy:asset": "mkdir -p lib/electron/renderer && cp -R src/electron/renderer/index.html lib/electron/renderer/index.html && cp -R src/electron/renderer/assets lib/electron/renderer/",
+    "build:bin": "tsc",
+    "build:electron": "rm -rf lib build && npm run copy:asset && tsc && electron-builder build --config electron-builder.json"
+  },
+  "keywords": [],
+  "author": "郑凡恺",
+  "license": "ISC",
+  "dependencies": {
+    "openai": "^3.2.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "electron": "^23.1.2",
+    "electron-builder": "^23.6.0",
+    "electron-reload": "^2.0.0-alpha.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  }
+}
