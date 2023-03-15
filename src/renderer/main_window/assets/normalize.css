@@ -373,3 +373,30 @@ template {
 [hidden] {
   display: none;
 }
+
+ol {
+  list-style-type: none;
+  counter-reset: my-counter;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+ol li {
+  display: flex;
+}
+
+ol li:before {
+  flex: 0 0 24px;
+  width: 24px;
+  content: counter(my-counter) ". ";
+  counter-increment: my-counter;
+}
+
+ol li>* {
+  flex: 1;
+  margin-top: 0 !important;
+}
+
+ol li>p {
+  margin-top: 0 !important;
+}
