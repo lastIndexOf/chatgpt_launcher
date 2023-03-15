@@ -1,4 +1,5 @@
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from 'openai';
+import { sleep } from '../utils/timer';
 
 interface IChatGPTOptions {
   apiKey: string;
@@ -70,32 +71,38 @@ export class ChatGPT {
   }
 
   public async sendMessage(message: string) {
-    try {
-      this._messages.push({
-        role: 'user',
-        content: message,
-      });
+    this._messages.push({
+      role: 'user',
+      content: message,
+    });
 
-      const res = await this._api!.createChatCompletion(
-        {
-          model: 'gpt-3.5-turbo',
-          messages: this._messages,
-          n: 1,
-          stream: true,
-        },
-        { responseType: 'stream' }
-      );
+    let retry = 3;
+    while (retry > 0) {
+      try {
+        const res = await this._api!.createChatCompletion(
+          {
+            model: 'gpt-3.5-turbo',
+            messages: this._messages,
+            n: 1,
+            stream: true,
+          },
+          { responseType: 'stream' }
+        );
 
-      const reply = await this.handleStreamData(res.data as any);
+        const reply = await this.handleStreamData(res.data as any);
 
-      this._messages.push(reply);
+        this._messages.push(reply);
 
-      return reply;
-    } catch (err) {
-      const msg = `Request ChatGPT Api Error. please input \`:clear\` clear context.`;
-      this._streamCallback?.(msg);
-      return null;
+        return reply;
+      } catch (err) {
+        await sleep(500);
+        retry--;
+      }
     }
+
+    const msg = `Request ChatGPT Api Error. please input \`:clear\` clear context.`;
+    this._streamCallback?.(msg);
+    return msg;
   }
 
   public setStreamCallback(streamCallback: (data: string) => void) {
