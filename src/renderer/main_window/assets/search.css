@@ -1,0 +1,130 @@
+html {
+  height: 100%;
+}
+
+body {
+  color: #fff;
+  margin-bottom: 24px;
+  height: 100%;
+  overflow-y: hidden;
+  background-color: #2D1D1C;
+}
+
+.search-container {
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 68px;
+  padding-right: 0;
+  /* margin: 12px 12px 0 12px; */
+  /* padding: 2px 0; */
+  font-size: 32px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background-color: #2D1D1C;
+}
+
+.search-container .divider {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  border: 0;
+  background-color: rgba(200, 200, 200, 0.1);
+}
+
+.search {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding-left: 16px;
+  font-size: 16px;
+  /* line-height: 32px; */
+  color: #fff;
+  background-color: transparent;
+  /* background-color: red; */
+}
+
+.search:focus {
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.gpt-scroll {
+  width: 100%;
+  height: calc(100% - 93px);
+  margin-top: 70px;
+  overflow-y: scroll;
+}
+
+.gpt-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.gpt-container {
+  margin: 0;
+  padding: 0 12px;
+  border-radius: 12px;
+  list-style: none;
+}
+
+.gpt-container .gpt-question {
+  display: inline-block;
+  width: 100%;
+  /* min-height: 49px; */
+  padding-left: 8px;
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+  color: #A19F9F;
+  box-sizing: border-box;
+  /* background-color: rgb(21, 21, 24); */
+}
+
+/* .gpt-container .gpt-question:hover {
+  background-color: rgb(21, 21, 24);
+} */
+
+.gpt-container .answer-container {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 12px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  background-color: rgb(61, 52, 51);
+}
+
+.gpt-container .answer-container:hover {
+  background-color: rgba(61, 52, 51, .5);
+}
+
+.gpt-container .answer-container svg {
+  flex: 0 0 50px;
+  width: 50px;
+  transform: scale(0.8);
+}
+
+.gpt-container .answer-container .markdown-body {
+  background-color: transparent;
+}
+
+.gpt-container .answer-container .gpt-answer {
+  flex: 1;
+  /* display: inline-block; */
+  width: 600px;
+  min-height: 98px;
+  margin: 0 0 0 12px;
+  font-size: 15px;
+  cursor: text;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.gpt-container .answer-container .gpt-answer * {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
