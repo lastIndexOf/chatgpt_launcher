@@ -114,17 +114,13 @@ body {
 
 .gpt-container .answer-container .gpt-answer {
   flex: 0 0 1;
-  /* display: inline-block; */
-  /* width: 640px; */
   min-height: 98px;
   margin: 0 0 0 12px;
   font-size: 15px;
   cursor: text;
-  white-space: pre-wrap;
-  word-wrap: break-word;
 }
 
-.gpt-container .answer-container .gpt-answer * {
+.gpt-container .answer-container .gpt-answer :not(li) {
   white-space: pre-wrap;
   word-wrap: break-word;
 }

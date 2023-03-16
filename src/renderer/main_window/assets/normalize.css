@@ -373,7 +373,7 @@ template {
 [hidden] {
   display: none;
 }
-
+/* 
 ol {
   list-style-type: none;
   counter-reset: my-counter;
@@ -399,4 +399,4 @@ ol li>* {
 
 ol li>p {
   margin-top: 0 !important;
-}
+} */
