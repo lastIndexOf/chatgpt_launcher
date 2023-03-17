@@ -25,3 +25,6 @@ yarn start
 ```bash
 yarn package
 ```
+
+## start
+Press command+shift+space
