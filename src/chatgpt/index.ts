@@ -1,4 +1,5 @@
-import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from 'openai';
+import axios, { AxiosInstance } from 'axios';
+import { ChatCompletionRequestMessage } from 'openai';
 import { sleep } from '../utils/timer';
 
 interface IChatGPTOptions {
@@ -7,8 +8,9 @@ interface IChatGPTOptions {
 }
 
 export class ChatGPT {
+  private _retries = 3;
   private _messages: ChatCompletionRequestMessage[] = [];
-  private _api?: OpenAIApi;
+  private _api?: AxiosInstance;
   private _streamCallback?: (data: string) => void;
 
   constructor(opts: IChatGPTOptions) {
@@ -19,10 +21,16 @@ export class ChatGPT {
   }
 
   private async _apiInit(apiKey: string) {
-    const config = new Configuration({
-      apiKey,
+    // const config = new Configuration({
+    //   apiKey,
+    // });
+    this._api = axios.create({
+      timeout: 3000,
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
     });
-    this._api = new OpenAIApi(config);
   }
 
   private handleStreamData(stream: any): Promise<ChatCompletionRequestMessage> {
@@ -79,7 +87,8 @@ export class ChatGPT {
     let retry = 3;
     while (retry > 0) {
       try {
-        const res = await this._api!.createChatCompletion(
+        const res = await this._api?.post(
+          `https://api.openai.com/v1/chat/completions`,
           {
             model: 'gpt-3.5-turbo',
             messages: this._messages,
@@ -95,6 +104,7 @@ export class ChatGPT {
 
         return reply;
       } catch (err) {
+        console.error(err.toString());
         await sleep(500);
         retry--;
       }
