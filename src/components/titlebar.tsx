@@ -1,12 +1,18 @@
 import { useEffect } from "react";
 import { appWindow } from "@tauri-apps/api/window";
 import styled from "styled-components";
-import { black_1, gray_2, gray_4, red_9 } from "../styles/colors";
+import { black_1, gray_4, red_9 } from "../styles/colors";
 
 const Container = styled.div`
   position: relative;
   height: 56px;
-  background: ${gray_2};
+  background: linear-gradient(
+    to right,
+    rgba(33, 39, 51, 0.5),
+    rgba(40, 45, 57, 0.5),
+    rgba(33, 39, 51, 0.5)
+  );
+  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
   user-select: none;
   display: flex;
   justify-content: flex-start;

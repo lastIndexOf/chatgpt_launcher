@@ -4,5 +4,9 @@
 
 html,
 body {
-  background-color: rgba(36, 45, 56, .6);
+  background-color: rgba(48, 49, 59, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
 }
